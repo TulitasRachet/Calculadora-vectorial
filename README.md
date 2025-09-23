@@ -1,2 +1,2 @@
 # Calculadora-vectorial
-Calculadora que permite operar vectores en dos y tres dimensiones, tales como la suma, resta, sacar el angulo, producto punto, producto cruz y producto punto triple
+Bienvenido a la calculadora vectorial, esta es una calculadora que te permite operar entre uno, dos o tres vectores, además de graficar tanto en dos dimensiones como en tres además de permitirte descargar una imagen detallada de los resultados.
