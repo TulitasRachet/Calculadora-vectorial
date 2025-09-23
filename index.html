@@ -98,6 +98,8 @@
         <button class="btn-green" onclick="calculate('producto_punto')">⚪ Producto Punto</button>
         <button class="btn-red" onclick="calculate('producto_cruz')">✖ Producto Cruz</button>
         <button class="btn-green" onclick="calculate('producto_triple')">🔺 Producto Triple</button>
+        <button class="btn-black" onclick="calculate('a × (b × c)')"></button>
+        <button class="btn-red" onclick="calculate('(a × b) × c')"></button>
       </div>
     </div>
 
@@ -145,13 +147,20 @@
           vectors=[a,b,diff]; labels=["A","B","A-B"];
           break;
         case 'angulo':
-          const dot = a.x*b.x + a.y*b.y + a.z*b.z;
-          const magA = Math.sqrt(a.x**2+a.y**2+a.z**2);
-          const magB = Math.sqrt(b.x**2+b.y**2+b.z**2);
-          const angle = Math.acos(dot/(magA*magB)) * 180/Math.PI;
-          result = `<div class="result-item"><strong>∠(A,B) =</strong> ${angle.toFixed(2)}°</div>`;
-          vectors=[a,b]; labels=["A","B"];
-          break;
+          const magA = Math.sqrt(a.x**2 + a.y**2 + a.z**2);
+          const magB = Math.sqrt(b.x**2 + b.y**2 + b.z**2);
+          if (magA === 0 || magB === 0) {
+            result = `<div class="result-item"><strong>Error:</strong> No se puede calcular el ángulo, uno de los vectores es el vector nulo.</div>`;
+            vectors = [a, b];
+            labels = ["A", "B"];
+          } else {
+            const dot = a.x * b.x + a.y * b.y + a.z * b.z;
+            const angle = Math.acos(dot / (magA * magB)) * 180 / Math.PI;
+            result = `<div class="result-item"><strong>∠(A,B) =</strong> ${angle.toFixed(2)}°</div>`;
+            vectors = [a, b];
+            labels = ["A", "B"];
+          }
+        break;
         case 'producto_punto':
           const dot2 = a.x*b.x + a.y*b.y + a.z*b.z;
           result = `<div class="result-item"><strong>A · B =</strong> ${dot2.toFixed(2)}</div>`;
@@ -161,7 +170,7 @@
           const cross = {
             x:a.y*b.z - a.z*b.y,
             y:a.z*b.x - a.x*b.z,
-            z:a.x*b.y - a.y*b.x
+            z:a.x*b.y - a.y*b.x,
           };
           result = `<div class="result-item"><strong>A × B =</strong> (${cross.x}, ${cross.y}, ${cross.z})</div>`;
           vectors=[a,b,cross]; labels=["A","B","A×B"];
@@ -170,12 +179,37 @@
           const crossBC = {
             x:b.y*c.z - b.z*c.y,
             y:b.z*c.x - b.x*c.z,
-            z:b.x*c.y - b.y*c.x
+            z:b.x*c.y - b.y*c.x,
           };
           const triple = a.x*crossBC.x + a.y*crossBC.y + a.z*crossBC.z;
           result = `<div class="result-item"><strong>A · (B × C) =</strong> ${triple.toFixed(2)}</div>`;
           vectors=[a,b,c,crossBC]; labels=["A","B","C","B×C"];
           break;
+          };
+      case 'a × (b × c)'
+          const ptv1bc ={
+            x: b.y * c.z - b.z * c.y,
+            y: b.z * c.x - b.x * c.z,
+            z: b.x * c.y - b.y * c.x
+          };
+          const ptv1abc{
+            x: a.y * bc.z - a.z * bc.y,
+            y: a.z * bc.x - a.x * bc.z,
+            z: a.x * bc.y - a.y * bc.x
+          break;
+          };
+      case '(a × b) × c'
+          const ptv2ab{
+            x: a.y * b.z - a.z * b.y,
+            y: a.z * b.x - a.x * b.z,
+            z: a.x * b.y - a.y * b.x
+          };
+          const ptv2abc{
+            x: ab.y * c.z - ab.z * c.y,
+            y: ab.z * c.x - ab.x * c.z,
+            z: ab.x * c.y - ab.y * c.x
+          break;
+          };
       }
 
       document.getElementById("result").innerHTML = result;
@@ -210,3 +244,4 @@
   </script>
 </body>
 </html>
+
