@@ -130,25 +130,39 @@
     }
 
     function calculate(op) {
-      const a = { x: +ax.value||0, y: +ay.value||0, z: +az.value||0 };
-      const b = { x: +bx.value||0, y: +by.value||0, z: +bz.value||0 };
-      const c = { x: +cx.value||0, y: +cy.value||0, z: +cz.value||0 };
-      let result = "", vectors=[], labels=[];
+      const ax = document.getElementById("ax");
+      const ay = document.getElementById("ay");
+      const az = document.getElementById("az");
+      const bx = document.getElementById("bx");
+      const by = document.getElementById("by");
+      const bz = document.getElementById("bz");
+      const cx = document.getElementById("cx");
+      const cy = document.getElementById("cy");
+      const cz = document.getElementById("cz");
+
+      const a = { x: +ax.value || 0, y: +ay.value || 0, z: +az.value || 0 };
+      const b = { x: +bx.value || 0, y: +by.value || 0, z: +bz.value || 0 };
+      const c = { x: +cx.value || 0, y: +cy.value || 0, z: +cz.value || 0 };
+      let result = "", vectors = [], labels = [];
 
       switch(op) {
         case 'suma':
-          const sum = {x:a.x+b.x, y:a.y+b.y, z:a.z+b.z};
+          const sum = { x: a.x + b.x, y: a.y + b.y, z: a.z + b.z };
           result = `<div class="result-item"><strong>A + B =</strong> (${sum.x}, ${sum.y}, ${sum.z})</div>`;
-          vectors=[a,b,sum]; labels=["A","B","A+B"];
+          vectors = [a, b, sum];
+          labels = ["A", "B", "A+B"];
           break;
+
         case 'resta':
-          const diff = {x:a.x-b.x, y:a.y-b.y, z:a.z-b.z};
+          const diff = { x: a.x - b.x, y: a.y - b.y, z: a.z - b.z };
           result = `<div class="result-item"><strong>A - B =</strong> (${diff.x}, ${diff.y}, ${diff.z})</div>`;
-          vectors=[a,b,diff]; labels=["A","B","A-B"];
+          vectors = [a, b, diff];
+          labels = ["A", "B", "A-B"];
           break;
+
         case 'angulo':
-          const magA = Math.sqrt(a.x**2 + a.y**2 + a.z**2);
-          const magB = Math.sqrt(b.x**2 + b.y**2 + b.z**2);
+          const magA = Math.sqrt(a.x ** 2 + a.y ** 2 + a.z ** 2);
+          const magB = Math.sqrt(b.x ** 2 + b.y ** 2 + b.z ** 2);
           if (magA === 0 || magB === 0) {
             result = `<div class="result-item"><strong>Error:</strong> No se puede calcular el ángulo, uno de los vectores es el vector nulo.</div>`;
             vectors = [a, b];
@@ -160,56 +174,69 @@
             vectors = [a, b];
             labels = ["A", "B"];
           }
-        break;
-        case 'producto_punto':
-          const dot2 = a.x*b.x + a.y*b.y + a.z*b.z;
-          result = `<div class="result-item"><strong>A · B =</strong> ${dot2.toFixed(2)}</div>`;
-          vectors=[a,b]; labels=["A","B"];
           break;
+
+        case 'producto_punto':
+          const dot2 = a.x * b.x + a.y * b.y + a.z * b.z;
+          result = `<div class="result-item"><strong>A · B =</strong> ${dot2.toFixed(2)}</div>`;
+          vectors = [a, b];
+          labels = ["A", "B"];
+          break;
+
         case 'producto_cruz':
           const cross = {
-            x:a.y*b.z - a.z*b.y,
-            y:a.z*b.x - a.x*b.z,
-            z:a.x*b.y - a.y*b.x,
-          };
-          result = `<div class="result-item"><strong>A × B =</strong> (${cross.x}, ${cross.y}, ${cross.z})</div>`;
-          vectors=[a,b,cross]; labels=["A","B","A×B"];
-          break;
-        case 'producto_triple':
-          const crossBC = {
-            x:b.y*c.z - b.z*c.y,
-            y:b.z*c.x - b.x*c.z,
-            z:b.x*c.y - b.y*c.x,
-          };
-          const triple = a.x*crossBC.x + a.y*crossBC.y + a.z*crossBC.z;
-          result = `<div class="result-item"><strong>A · (B × C) =</strong> ${triple.toFixed(2)}</div>`;
-          vectors=[a,b,c,crossBC]; labels=["A","B","C","B×C"];
-          break;
-          };
-      case 'triple_vectorial_a'
-          const ptv1bc ={
-            x: b.y * c.z - b.z * c.y,
-            y: b.z * c.x - b.x * c.z,
-            z: b.x * c.y - b.y * c.x
-          };
-          const ptv1abc{
-            x: a.y * bc.z - a.z * bc.y,
-            y: a.z * bc.x - a.x * bc.z,
-            z: a.x * bc.y - a.y * bc.x
-          break;
-          };
-      case 'triple_vectorial_b'
-          const ptv2ab{
             x: a.y * b.z - a.z * b.y,
             y: a.z * b.x - a.x * b.z,
             z: a.x * b.y - a.y * b.x
           };
-          const ptv2abc{
-            x: ab.y * c.z - ab.z * c.y,
-            y: ab.z * c.x - ab.x * c.z,
-            z: ab.x * c.y - ab.y * c.x
+          result = `<div class="result-item"><strong>A × B =</strong> (${cross.x}, ${cross.y}, ${cross.z})</div>`;
+          vectors = [a, b, cross];
+          labels = ["A", "B", "A×B"];
           break;
+
+        case 'producto_triple':
+          const crossBC = {
+            x: b.y * c.z - b.z * c.y,
+            y: b.z * c.x - b.x * c.z,
+            z: b.x * c.y - b.y * c.x
           };
+          const triple = a.x * crossBC.x + a.y * crossBC.y + a.z * crossBC.z;
+          result = `<div class="result-item"><strong>A · (B × C) =</strong> ${triple.toFixed(2)}</div>`;
+          vectors = [a, b, c, crossBC];
+          labels = ["A", "B", "C", "B×C"];
+          break;
+
+        case 'triple_vectorial_a':
+          const ptv1bc = {
+            x: b.y * c.z - b.z * c.y,
+            y: b.z * c.x - b.x * c.z,
+            z: b.x * c.y - b.y * c.x
+          };
+          const ptv1abc = {
+            x: a.y * ptv1bc.z - a.z * ptv1bc.y,
+            y: a.z * ptv1bc.x - a.x * ptv1bc.z,
+            z: a.x * ptv1bc.y - a.y * ptv1bc.x
+          };
+          result = `<div class="result-item"><strong>a x (b x c) =</strong> (${ptv1abc.x}, ${ptv1abc.y}, ${ptv1abc.z})</div>`;
+          vectors = [a, b, c, ptv1bc, ptv1abc];
+          labels = ["A", "B", "C", "B×C", "A×(B×C)"];
+          break;
+
+        case 'triple_vectorial_b':
+          const ptv2ab = {
+            x: a.y * b.z - a.z * b.y,
+            y: a.z * b.x - a.x * b.z,
+            z: a.x * b.y - a.y * b.x
+          };
+          const ptv2abc = {
+            x: ptv2ab.y * c.z - ptv2ab.z * c.y,
+            y: ptv2ab.z * c.x - ptv2ab.x * c.z,
+            z: ptv2ab.x * c.y - ptv2ab.y * c.x
+          };
+          result = `<div class="result-item"><strong>(a x b) x c =</strong> (${ptv2abc.x}, ${ptv2abc.y}, ${ptv2abc.z})</div>`;
+          vectors = [a, b, c, ptv2ab, ptv2abc];
+          labels = ["A", "B", "C", "A×B", "(A×B)×C"];
+          break;
       }
 
       document.getElementById("result").innerHTML = result;
@@ -223,26 +250,26 @@
 
     function plot(vectors, labels) {
       let data;
-      if(is3D){
-        data = vectors.map((v,i)=>({
-          type:"scatter3d", mode:"lines+markers", name:labels[i],
-          line:{width:6}, marker:{size:4},
-          x:[0,v.x], y:[0,v.y], z:[0,v.z]
+      if(is3D) {
+        data = vectors.map((v,i) => ({
+          type: "scatter3d", mode: "lines+markers", name: labels[i],
+          line: { width: 6 }, marker: { size: 4 },
+          x: [0, v.x], y: [0, v.y], z: [0, v.z]
         }));
-        const layout={margin:{l:0,r:0,b:0,t:0},scene:{xaxis:{title:'X'},yaxis:{title:'Y'},zaxis:{title:'Z'}}};
-        Plotly.newPlot("graph",data,layout);
+        const layout = { margin: { l: 0, r: 0, b: 0, t: 0 }, 
+                        scene: { xaxis: { title: 'X' }, yaxis: { title: 'Y' }, zaxis: { title: 'Z' } } };
+        Plotly.newPlot("graph", data, layout);
       } else {
-        data = vectors.map((v,i)=>({
-          type:"scatter", mode:"lines+markers", name:labels[i],
-          line:{width:3}, marker:{size:8},
-          x:[0,v.x], y:[0,v.y]
+        data = vectors.map((v, i) => ({
+          type: "scatter", mode: "lines+markers", name: labels[i],
+          line: { width: 3 }, marker: { size: 8 },
+          x: [0, v.x], y: [0, v.y]
         }));
-        const layout={margin:{l:40,r:20,b:40,t:20},xaxis:{title:'X'},yaxis:{title:'Y'}};
-        Plotly.newPlot("graph",data,layout);
+        const layout = { margin: { l: 40, r: 20, b: 40, t: 20 }, 
+                         xaxis: { title: 'X' }, yaxis: { title: 'Y' } };
+        Plotly.newPlot("graph", data, layout);
       }
     }
   </script>
 </body>
 </html>
-
-
