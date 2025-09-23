@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Calculadora de Vectores</title>
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #6a11cb, #2575fc);
+      color: #fff;
+      margin: 0;
+      padding: 20px;
+    }
+    h1 { text-align: center; margin-bottom: 10px; }
+    h3 { margin: 10px 0; }
+    .container {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+    .panel {
+      background: rgba(255, 255, 255, 0.1);
+      padding: 20px;
+      border-radius: 15px;
+      flex: 1;
+      min-width: 320px;
+      box-shadow: 0px 4px 12px rgba(0,0,0,0.3);
+    }
+    input {
+      width: 70px;
+      margin: 5px;
+      padding: 8px;
+      border: none;
+      border-radius: 10px;
+      text-align: center;
+      background: #fff;
+      color: #333;
+      font-weight: bold;
+      box-shadow: inset 2px 2px 6px rgba(0,0,0,0.2);
+      transition: 0.2s;
+    }
+    input:focus { outline: none; transform: scale(1.05); }
+    button {
+      margin: 6px;
+      padding: 12px 20px;
+      border: none;
+      border-radius: 12px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.3s;
+      font-size: 15px;
+    }
+    
+    button:hover { transform: scale(1.05); }
+    .btn-red { background: linear-gradient(45deg, #ff416c, #ff4b2b); color: #fff; }
+    .btn-blue { background: linear-gradient(45deg, #36d1dc, #5b86e5); color: #fff; }
+    .btn-green { background: linear-gradient(45deg, #56ab2f, #a8e063); color: #fff; }
+    .btn-yellow { background: linear-gradient(45deg, #f7971e, #ffd200); color: #fff; }
+    .result-item {
+      margin: 5px 0;
+      background: rgba(0,0,0,0.2);
+      padding: 8px;
+      border-radius: 8px;
+    }
+    #graph { width: 100%; height: 420px; }
+    .mode-toggle { text-align: center; margin-top: 12px; }
+    .mode-toggle button { font-size: 14px; }
+  </style>
+</head>
+<body>
+  <h1>📊 Calculadora de Vectores</h1>
+  <p style="text-align:center;">Realiza operaciones vectoriales con visualización en 2D o 3D</p>
+
+  <div class="container">
+    <!-- Panel de entrada -->
+    <div class="panel">
+      <h3>📌 Vector A</h3>
+      <input id="ax" type="number" placeholder="Ax" value="">
+      <input id="ay" type="number" placeholder="Ay" value="">
+      <input id="az" type="number" placeholder="Az" value="">
+
+      <h3>📌 Vector B</h3>
+      <input id="bx" type="number" placeholder="Bx" value="">
+      <input id="by" type="number" placeholder="By" value="">
+      <input id="bz" type="number" placeholder="Bz" value="">
+
+      <h3>📌 Vector C</h3>
+      <input id="cx" type="number" placeholder="Cx" value="">
+      <input id="cy" type="number" placeholder="Cy" value="">
+      <input id="cz" type="number" placeholder="Cz" value="">
+
+      <div>
+        <button class="btn-blue" onclick="calculate('suma')">➕ Suma</button>
+        <button class="btn-blue" onclick="calculate('resta')">➖ Resta</button>
+        <button class="btn-yellow" onclick="calculate('angulo')">📐 Ángulo</button>
+        <button class="btn-green" onclick="calculate('producto_punto')">⚪ Producto Punto</button>
+        <button class="btn-red" onclick="calculate('producto_cruz')">✖ Producto Cruz</button>
+        <button class="btn-green" onclick="calculate('producto_triple')">🔺 Producto Triple</button>
+      </div>
+    </div>
+
+    <!-- Panel de visualización -->
+    <div class="panel">
+      <h3>📈 Visualización</h3>
+      <div id="graph"></div>
+      <div class="mode-toggle">
+        <button class="btn-yellow" onclick="setMode(false)">📉 Ver en 2D</button>
+        <button class="btn-yellow" onclick="setMode(true)">📊 Ver en 3D</button>
+      </div>
+      <div id="result"></div>
+    </div>
+  </div>
+
+  <script>
+    let is3D = true;
+    let lastVectors = [];
+    let lastLabels = [];
+    let lastResult = "";
+
+    function setMode(mode) {
+      is3D = mode;
+      if(lastVectors.length) {
+        plot(lastVectors, lastLabels);
+        document.getElementById("result").innerHTML = lastResult;
+      }
+    }
+
+    function calculate(op) {
+      const a = { x: +ax.value||0, y: +ay.value||0, z: +az.value||0 };
+      const b = { x: +bx.value||0, y: +by.value||0, z: +bz.value||0 };
+      const c = { x: +cx.value||0, y: +cy.value||0, z: +cz.value||0 };
+      let result = "", vectors=[], labels=[];
+
+      switch(op) {
+        case 'suma':
+          const sum = {x:a.x+b.x, y:a.y+b.y, z:a.z+b.z};
+          result = `<div class="result-item"><strong>A + B =</strong> (${sum.x}, ${sum.y}, ${sum.z})</div>`;
+          vectors=[a,b,sum]; labels=["A","B","A+B"];
+          break;
+        case 'resta':
+          const diff = {x:a.x-b.x, y:a.y-b.y, z:a.z-b.z};
+          result = `<div class="result-item"><strong>A - B =</strong> (${diff.x}, ${diff.y}, ${diff.z})</div>`;
+          vectors=[a,b,diff]; labels=["A","B","A-B"];
+          break;
+        case 'angulo':
+          const dot = a.x*b.x + a.y*b.y + a.z*b.z;
+          const magA = Math.sqrt(a.x**2+a.y**2+a.z**2);
+          const magB = Math.sqrt(b.x**2+b.y**2+b.z**2);
+          const angle = Math.acos(dot/(magA*magB)) * 180/Math.PI;
+          result = `<div class="result-item"><strong>∠(A,B) =</strong> ${angle.toFixed(2)}°</div>`;
+          vectors=[a,b]; labels=["A","B"];
+          break;
+        case 'producto_punto':
+          const dot2 = a.x*b.x + a.y*b.y + a.z*b.z;
+          result = `<div class="result-item"><strong>A · B =</strong> ${dot2.toFixed(2)}</div>`;
+          vectors=[a,b]; labels=["A","B"];
+          break;
+        case 'producto_cruz':
+          const cross = {
+            x:a.y*b.z - a.z*b.y,
+            y:a.z*b.x - a.x*b.z,
+            z:a.x*b.y - a.y*b.x
+          };
+          result = `<div class="result-item"><strong>A × B =</strong> (${cross.x}, ${cross.y}, ${cross.z})</div>`;
+          vectors=[a,b,cross]; labels=["A","B","A×B"];
+          break;
+        case 'producto_triple':
+          const crossBC = {
+            x:b.y*c.z - b.z*c.y,
+            y:b.z*c.x - b.x*c.z,
+            z:b.x*c.y - b.y*c.x
+          };
+          const triple = a.x*crossBC.x + a.y*crossBC.y + a.z*crossBC.z;
+          result = `<div class="result-item"><strong>A · (B × C) =</strong> ${triple.toFixed(2)}</div>`;
+          vectors=[a,b,c,crossBC]; labels=["A","B","C","B×C"];
+          break;
+      }
+
+      document.getElementById("result").innerHTML = result;
+      plot(vectors, labels);
+
+      // Guardar último cálculo
+      lastVectors = vectors;
+      lastLabels = labels;
+      lastResult = result;
+    }
+
+    function plot(vectors, labels) {
+      let data;
+      if(is3D){
+        data = vectors.map((v,i)=>({
+          type:"scatter3d", mode:"lines+markers", name:labels[i],
+          line:{width:6}, marker:{size:4},
+          x:[0,v.x], y:[0,v.y], z:[0,v.z]
+        }));
+        const layout={margin:{l:0,r:0,b:0,t:0},scene:{xaxis:{title:'X'},yaxis:{title:'Y'},zaxis:{title:'Z'}}};
+        Plotly.newPlot("graph",data,layout);
+      } else {
+        data = vectors.map((v,i)=>({
+          type:"scatter", mode:"lines+markers", name:labels[i],
+          line:{width:3}, marker:{size:8},
+          x:[0,v.x], y:[0,v.y]
+        }));
+        const layout={margin:{l:40,r:20,b:40,t:20},xaxis:{title:'X'},yaxis:{title:'Y'}};
+        Plotly.newPlot("graph",data,layout);
+      }
+    }
+  </script>
+</body>
+</html>
