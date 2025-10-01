@@ -3,16 +3,14 @@
 
 # Descripción
   Este proyecto es una aplicación web que permite realizar operaciones vectoriales entre hasta tres vectores (A, B y C) y visualizar los resultados en 2D o en 3D. Las operaciones disponibles incluyen:
-    ```
-    -Suma de vectores
-    -Resta de vectores
-    -Cálculo del ángulo entre vectores
-    -Producto punto
-    -Producto cruz
-    -Producto triple `a⋅(b×c)`
-    -`a × ( b × c)`
-    -`(a × b) × c`
-    ```
+    *-Suma de vectores
+    *-Resta de vectores
+    *-Cálculo del ángulo entre vectores
+    *-Producto punto
+    *-Producto cruz
+    *-Producto triple `a⋅(b×c)`
+    *-`a × ( b × c)`
+    *-`(a × b) × c`
   
   También permite elegir cómo visualizar el vector resultante, ya sea en un plano bidimensional o en un espacio tridimensional.
   
