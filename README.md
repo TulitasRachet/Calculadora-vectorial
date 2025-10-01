@@ -55,10 +55,13 @@
       -Maneja la visualización de los vectores con Ploty.js en 2D y 3D
       -Guarda el último cálculo para poder alternar entre modos de visualización sin perder los resultados.
   -Funcionabilidad de las operaciones
+  
     Cuando el usuario da clic en un botón, se ejecuta la función ("calculate(op)")que:
+    
       -Obtiene los valores de los imputs de los vectores A, B y C.
       -Transforma esos valores en objetos con componentes {x, y, z}.
       -Dependiendo de la operación seleccionada, hace los cálculos:
+      
         -Suma: A + B → muestra vector resultante.
         -Resta: A - B.
         -Ángulo: calcula el ángulo entre A y B usando el producto punto y magnitudes.
@@ -71,6 +74,7 @@
       -Muestra el resultado numérico en el panel derecho.
       -Dibuja los vectores en la gráfica con ("plot(vectors, labels)")
     -Visualización con Ploty.js
+    
       El sistema puede alternar entre 2D y 3D:
         -En 3D (scatter3d):
           -Se grafican los vectores desde el origen (0,0,0) hasta su extremo (x,y,z)
@@ -82,6 +86,7 @@
         -📉Ver en 2D → setMode(false)
         -📊Ver en 3D → setMode(true)
     -Flujo de uso del usuario
+    
       -El usuario escribe los componentes de A, B, C.
       -Selecciona una operación (ej: Producto Cruz).
       -La calculadora:
