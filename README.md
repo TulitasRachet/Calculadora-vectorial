@@ -11,6 +11,9 @@
     * -Producto triple `a⋅(b×c)`
     * -`a × ( b × c)`
     * -`(a × b) × c`
+    - George Washington
+    - George Washington
+    - George Washington
   
   También permite elegir cómo visualizar el vector resultante, ya sea en un plano bidimensional o en un espacio tridimensional.
   
