@@ -105,6 +105,7 @@ Este proyecto fue desarrollado en la Escuela Superior de Cómputo, perteneciente
 
 ---
 
-## ✍️ Autor
+## ✍️ Autores
 
-[Bruno Aarón Cruz Rodríguez (TulitasRatchet)](https://github.com/TulitasRachet)
+- [Bruno Aarón Cruz Rodríguez (TulitasRatchet)](https://github.com/TulitasRachet)
+- [Mauricio Alejandro Sánchez Ponce (MauAlex1710)](https://github.com/MauAlex1710).
