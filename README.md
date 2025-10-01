@@ -59,3 +59,47 @@ Si quieres ejecutarla de forma local, tienes dos opciones:
    ```bash
    git clone https://github.com/TulitasRachet/Calculadora-vectorial
    cd Calculadora-vectorial
+    ```
+3. Abre el archivo index.html en tu navegador de confianza.
+## ⚙️ ¿Cómo funciona?
+
+### 🔸 Estructura del proyecto
+- **HTML** → Interfaz de usuario con inputs, botones y el área de visualización.  
+- **CSS** → Estilo moderno con gradientes, botones de colores, sombras y animaciones.  
+- **JavaScript** → Lógica matemática y visualización con **Plotly.js**.  
+
+### 🔸 Operaciones implementadas
+- **Suma** → `A + B`  
+- **Resta** → `A - B`  
+- **Ángulo entre vectores** → Usando producto punto y magnitudes.  
+- **Producto punto** → `A · B`  
+- **Producto cruz** → `A × B`  
+- **Producto triple escalar** → `A · (B × C)`  
+- **Producto triple vectorial** → `A × (B × C)` y `(A × B) × C`  
+
+### 🔸 Visualización con Plotly.js
+- **Modo 3D** → `scatter3d` con ejes X, Y, Z.  
+- **Modo 2D** → Gráfico en plano XY.  
+- Botones para alternar entre 📉 **2D** y 📊 **3D**.  
+
+---
+
+## 📌 Flujo de uso
+
+1. Ingresar los componentes de los vectores A, B y C.  
+2. Seleccionar una operación (ejemplo: **Producto Cruz**).  
+3. Ver el **resultado numérico** y la **gráfica en 2D/3D**.  
+4. Alternar entre modos de visualización sin perder resultados.  
+
+---
+
+## 📄 Licencia
+
+Este proyecto es de uso libre con fines educativos y de aprendizaje.
+
+---
+
+## ✍️ Autor
+
+[TulitasRatchet](https://github.com/TulitasRachet)
+
