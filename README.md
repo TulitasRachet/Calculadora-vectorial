@@ -61,6 +61,7 @@ Si quieres ejecutarla de forma local, tienes dos opciones:
    cd Calculadora-vectorial
     ```
 3. Abre el archivo index.html en tu navegador de confianza.
+---
 ## ⚙️ ¿Cómo funciona?
 
 ### 🔸 Estructura del proyecto
@@ -98,8 +99,12 @@ Si quieres ejecutarla de forma local, tienes dos opciones:
 Este proyecto es de uso libre con fines educativos y de aprendizaje.
 
 ---
+## 🏫 Créditos académicos
+
+Este proyecto fue desarrollado en la Escuela Superior de Cómputo, perteneciente al Instituto Politecnico Nacional, en el Grupo 1CM3 de la carrera de Ingenieria en Sistemas Computacionales (2020), en la asignatura de Analisis Vectorial en el año 2025
+---
 
 ## ✍️ Autor
 
-[TulitasRatchet](https://github.com/TulitasRachet)
+[Bruno Aarón Cruz Rodríguez(TulitasRatchet)](https://github.com/TulitasRachet)
 
