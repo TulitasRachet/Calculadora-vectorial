@@ -39,6 +39,7 @@
 # ¿Cómo funciona?
   -Estructura general
     -HTML
+    
       Define la interfaz del usuario: campos de entrada, botones de operaciones y el área de visualización.
       -Contiene tres paneles principales.
         -Vector A (inputs para Ax, Ay, Az).
