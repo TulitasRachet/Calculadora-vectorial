@@ -8,9 +8,9 @@
     -Cálculo del ángulo entre vectores
     -Producto punto
     -Producto cruz
-    -Producto triple a⋅(b×c)
-    -a × ( b × c)
-    -(a × b) × c
+    -Producto triple `a⋅(b×c)`
+    -`a × ( b × c)`
+    -`(a × b) × c`
   
   También permite elegir cómo visualizar el vector resultante, ya sea en un plano bidimensional o en un espacio tridimensional.
   
@@ -30,6 +30,7 @@
   
 # ¿Como ejecutar?
   La calculadora se encuentra actualmente online, en el link: https://tulitasrachet.github.io/Calculadora-vectorial/ aunque si quieres correrlo de forma local tienes dos opciones.
+  
       -Descargar el archivo.
         En el repositorio con link https://github.com/TulitasRachet/Calculadora-vectorial dale clic en el archivo index.html y ejecutalo desde tu computadora
       -Clonar el repositorio.
