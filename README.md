@@ -47,7 +47,7 @@ La calculadora está disponible en línea en:
 👉 [https://tulitasrachet.github.io/Calculadora-vectorial/](https://tulitasrachet.github.io/Calculadora-vectorial/)  
 
 Tambien tenemos el archivo de pruebas en:
-[Archivo de Pruebas (PDF)](docs/pruebas.pdf)
+[Archivo de Pruebas (PDF)](pruebas.pdf)
 
 
 Si quieres ejecutarla de forma local, tienes dos opciones:
