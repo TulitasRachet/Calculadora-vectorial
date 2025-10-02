@@ -19,10 +19,10 @@ Las operaciones disponibles incluyen:
 Además, se puede elegir cómo visualizar los vectores:  
 📉 **Plano 2D** o 📊 **Espacio 3D**.
 
-🔗 **Versión en línea:**  
-👉 [Calculadora Vectorial](https://tulitasrachet.github.io/Calculadora-vectorial/)
-🔗 **Tambien tenemos el archivo de pruebas en:**
-👉[Archivo de Pruebas (PDF)](https://github.com/TulitasRachet/Calculadora-vectorial/blob/131f9aacdea9f6880dcf4e5532cfffcfa7a7e242/pruebas.pdf)
+- 🔗 **Versión en línea:**  
+- 👉 [Calculadora Vectorial](https://tulitasrachet.github.io/Calculadora-vectorial/)
+- 🔗 **Tambien tenemos el archivo de pruebas en:**
+- 👉 [Archivo de Pruebas (PDF)](https://github.com/TulitasRachet/Calculadora-vectorial/blob/131f9aacdea9f6880dcf4e5532cfffcfa7a7e242/pruebas.pdf)
 
 
 
